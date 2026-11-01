@@ -69,7 +69,7 @@ dependencies {
     implementation 'com.github.infoadmstudio2020-cyber:NativeLoggerSDK:1.0.1'
 
     // NativeWebBridgeSDK
-    implementation 'com.github.infoadmstudio2020-cyber:NativeWebBridgeSDK:1.0.0'
+    implementation 'com.github.infoadmstudio2020-cyber:NativeWebBridgeSDK:1.0.3'
 }
 ```
 

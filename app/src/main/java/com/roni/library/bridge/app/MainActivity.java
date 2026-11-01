@@ -22,10 +22,12 @@ import com.roni.library.bridge.message.BridgeMessage;
 import com.roni.library.contracts.api.IApiHandler;
 import com.roni.library.contracts.api.NativeApiRequest;
 import com.roni.library.contracts.api.NativeApiResponse;
+import com.roni.library.contracts.platform.BatteryStatusDTO;
 import com.roni.library.logger.NativeLogger;
 import com.roni.library.router.NativeRouter;
 import com.roni.library.service.ServiceRegistry;
 import com.roni.library.service.builtins.BatteryStatusService;
+import com.roni.library.service.builtins.DeviceInfoDTO;
 import com.roni.library.service.builtins.DeviceInfoService;
 import com.roni.library.service.builtins.NetworkStateService;
 
@@ -279,44 +281,85 @@ public class MainActivity extends AppCompatActivity {
 
     private void queryDeviceInfo() {
         try {
-            DeviceInfoService service = (DeviceInfoService) ServiceRegistry.getInstance().getService(DeviceInfoService.class);
-            if (service != null && service.getCachedDeviceInfo() != null) {
-                String info = "Device: " + service.getCachedDeviceInfo().getModel() +
-                        "\nManufacturer: " + service.getCachedDeviceInfo().getManufacturer() +
-                        "\nOS: " + service.getCachedDeviceInfo().getOsVersion() +
-                        "\nSDK Int: " + service.getCachedDeviceInfo().getSdkInt();
-                tvServiceOutput.setText(info);
-                setOutput(info);
-            } else {
-                String fallback = "DeviceInfoService instantiated directly:\nModel: Android Native Device\nSDK: 34";
-                tvServiceOutput.setText(fallback);
-                setOutput(fallback);
+            DeviceInfoService service =
+                    (DeviceInfoService) ServiceRegistry.getInstance()
+                            .getService(DeviceInfoService.class);
+
+            if (service == null) {
+                String message = "DeviceInfoService is not registered.";
+                tvServiceOutput.setText(message);
+                setOutput(message);
+                return;
             }
-        } catch (Throwable t) {
-            tvServiceOutput.setText("Service query note: " + t.getMessage());
-            setOutput("Service Diagnostics completed.");
+
+            DeviceInfoDTO device = service.getDeviceInfo();
+
+            if (device == null) {
+                String message = "Device information is unavailable.";
+                tvServiceOutput.setText(message);
+                setOutput(message);
+                return;
+            }
+
+            String info =
+                    "Device: " + device.getModel()
+                            + "\nManufacturer: " + device.getManufacturer()
+                            + "\nOS: " + device.getOsVersion()
+                            + "\nSDK Int: " + device.getSdkInt();
+
+            tvServiceOutput.setText(info);
+            setOutput(info);
+
+        } catch (Exception e) {
+            String message = "Device service error: "
+                    + (e.getMessage() != null ? e.getMessage() : "Unknown error");
+
+            tvServiceOutput.setText(message);
+            setOutput(message);
         }
     }
-
     private void queryBatteryInfo() {
         try {
-            BatteryStatusService service = (BatteryStatusService) ServiceRegistry.getInstance().getService(BatteryStatusService.class);
-            if (service != null && service.getCachedBatteryStatus() != null) {
-                String info = "Battery Level: " + service.getCachedBatteryStatus().getLevel() + "%" +
-                        "\nIs Charging: " + service.getCachedBatteryStatus().isCharging() +
-                        "\nPlugged: " + service.getCachedBatteryStatus().getPluggedType();
-                tvServiceOutput.setText(info);
-                setOutput(info);
-            } else {
-                String fallback = "BatteryStatus: 100% (Simulated)\nCharging: true";
-                tvServiceOutput.setText(fallback);
-                setOutput(fallback);
+            BatteryStatusService service =
+                    (BatteryStatusService) ServiceRegistry.getInstance()
+                            .getService(BatteryStatusService.class);
+
+            if (service == null) {
+                String message = "BatteryStatusService is not registered.";
+                tvServiceOutput.setText(message);
+                setOutput(message);
+                return;
             }
-        } catch (Throwable t) {
-            tvServiceOutput.setText("Battery status note: " + t.getMessage());
+
+            BatteryStatusDTO battery = service.toContractDTO();
+
+            if (battery == null) {
+                String message = "Battery information is unavailable.";
+                tvServiceOutput.setText(message);
+                setOutput(message);
+                return;
+            }
+
+            String info =
+                    "Battery Level: " + battery.getLevel() + "%"
+                            + "\nIs Charging: " + battery.isCharging()
+                            + "\nPlugged: " + battery.getPluggedType()
+                            + "\nTemperature: " + battery.getTemperature()
+                            + " °C";
+
+            tvServiceOutput.setText(info);
+            setOutput(info);
+
+        } catch (Exception e) {
+            String message = "Battery service error: "
+                    + (e.getMessage() != null
+                    ? e.getMessage()
+                    : "Unknown error");
+
+            tvServiceOutput.setText(message);
+            setOutput(message);
         }
     }
-
     private void queryNetworkInfo() {
         try {
             NetworkStateService service = (NetworkStateService) ServiceRegistry.getInstance().getService(NetworkStateService.class);
