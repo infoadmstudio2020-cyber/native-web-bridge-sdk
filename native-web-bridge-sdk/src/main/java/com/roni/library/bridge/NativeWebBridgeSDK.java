@@ -39,7 +39,7 @@ public final class NativeWebBridgeSDK {
             this.bridge = WebBridge.init(this.config);
             state = RuntimeState.READY;
             try {
-                NativeLogger.getInstance().i(TAG, "NativeWebBridgeSDK initialized successfully. Version: 1.0.3");
+                NativeLogger.getInstance().i(TAG, "NativeWebBridgeSDK initialized successfully. Version: 1.0.1");
             } catch (Throwable ignored) {
             }
             return NativeWebBridgeSDKResult.success(this.bridge);

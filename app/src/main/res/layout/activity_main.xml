@@ -162,7 +162,7 @@
                         android:id="@+id/tv_dash_router_state"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="• NativeRouterSDK: Initialized (1.0.3)"
+                        android:text="• NativeRouterSDK: Initialized (1.0.1)"
                         android:textColor="@color/text_high"
                         android:textSize="13sp"
                         android:fontFamily="monospace"

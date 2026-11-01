@@ -2,11 +2,11 @@
 
 All notable changes to **NativeWebBridgeSDK** are documented in this file.
 
-## [1.0.3] - 2026-11-01
+## [1.0.1] - 2026-11-01
 
 ### Added
 - **WebBridge Core Engine**: Complete Layer 3 Transport & Bridge implementation connecting Web and Native.
-- **Bidirectional RPC Routing**: Seamless integration with `NativeRouterSDK:1.0.3`.
+- **Bidirectional RPC Routing**: Seamless integration with `NativeRouterSDK:1.0.1`.
 - **Ecosystem Service Integration**: Connected to `NativeServiceSDK:1.0.1` and `NativeRuntimeContracts:v1.0.1`.
 - **Diagnostic Logging**: Structured telemetry output via `NativeLoggerSDK:1.0.1`.
 - **Event Bus Subsystem**: `BridgeEventBus` supporting wildcard topic subscriptions and native-to-web broadcasting.
