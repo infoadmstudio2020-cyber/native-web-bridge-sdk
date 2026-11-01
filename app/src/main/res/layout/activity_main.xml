@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/canvas_dark">
+
+    <!-- Top Header -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/surface_dark"
+        android:padding="16dp"
+        android:gravity="center_vertical">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NativeWebBridgeSDK"
+                android:textColor="@color/text_high"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sdk_version"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv_status_badge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/accent_green"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:text="READY"
+            android:textColor="@color/white"
+            android:textSize="11sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Navigation Tab Bar -->
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/surface_elevated"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <Button
+                android:id="@+id/btn_nav_dashboard"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Dashboard"
+                android:textColor="@color/primary_cyan"
+                android:textSize="12sp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/btn_nav_bridge"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Bridge Tester"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/btn_nav_services"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Diagnostics"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/btn_nav_tests"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Test Center"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:layout_marginEnd="6dp" />
+
+            <Button
+                android:id="@+id/btn_nav_console"
+                style="?android:attr/borderlessButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Console"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <!-- Main Scrollable Content Area -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Panel 1: Dashboard -->
+            <LinearLayout
+                android:id="@+id/panel_dashboard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ecosystem Health &amp; Subsystem Overview"
+                    android:textColor="@color/primary_cyan"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:background="@color/surface_dark"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:id="@+id/tv_dash_sdk_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="• NativeWebBridgeSDK: Connected"
+                        android:textColor="@color/text_high"
+                        android:textSize="13sp"
+                        android:fontFamily="monospace" />
+
+                    <TextView
+                        android:id="@+id/tv_dash_router_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="• NativeRouterSDK: Initialized (1.0.0)"
+                        android:textColor="@color/text_high"
+                        android:textSize="13sp"
+                        android:fontFamily="monospace"
+                        android:layout_marginTop="6dp" />
+
+                    <TextView
+                        android:id="@+id/tv_dash_service_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="• NativeServiceSDK: Bound (1.0.1)"
+                        android:textColor="@color/text_high"
+                        android:textSize="13sp"
+                        android:fontFamily="monospace"
+                        android:layout_marginTop="6dp" />
+
+                    <TextView
+                        android:id="@+id/tv_dash_contracts_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="• NativeRuntimeContracts: Linked (v1.0.1)"
+                        android:textColor="@color/text_high"
+                        android:textSize="13sp"
+                        android:fontFamily="monospace"
+                        android:layout_marginTop="6dp" />
+
+                    <TextView
+                        android:id="@+id/tv_dash_logger_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="• NativeLoggerSDK: Active (1.0.1)"
+                        android:textColor="@color/text_high"
+                        android:textSize="13sp"
+                        android:fontFamily="monospace"
+                        android:layout_marginTop="6dp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="12dp">
+
+                    <Button
+                        android:id="@+id/btn_dash_reinit"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Re-Init Bridge"
+                        android:textColor="@color/white"
+                        android:backgroundTint="@color/surface_elevated" />
+
+                    <Button
+                        android:id="@+id/btn_dash_quick_test"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Quick Ping"
+                        android:textColor="@color/canvas_dark"
+                        android:backgroundTint="@color/primary_cyan"
+                        android:layout_marginStart="8dp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Panel 2: Bridge & Router Tester -->
+            <LinearLayout
+                android:id="@+id/panel_bridge"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bidirectional Bridge &amp; Router Tester"
+                    android:textColor="@color/primary_cyan"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <!-- Action Deck -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <Button
+                        android:id="@+id/btn_trigger_ping"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Ping"
+                        android:backgroundTint="@color/surface_elevated"
+                        android:textColor="@color/primary_cyan" />
+
+                    <Button
+                        android:id="@+id/btn_trigger_rpc"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Dispatch RPC"
+                        android:backgroundTint="@color/surface_elevated"
+                        android:textColor="@color/primary_cyan"
+                        android:layout_marginStart="6dp" />
+
+                    <Button
+                        android:id="@+id/btn_trigger_event"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Emit Event"
+                        android:backgroundTint="@color/surface_elevated"
+                        android:textColor="@color/primary_cyan"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+
+                <!-- Embedded Live WebView for Real Testing -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Live In-App WebView Bridge Container:"
+                    android:textColor="@color/text_muted"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="4dp" />
+
+                <WebView
+                    android:id="@+id/wv_bridge_test"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:background="@color/surface_dark" />
+            </LinearLayout>
+
+            <!-- Panel 3: Diagnostics & Ecosystem Services -->
+            <LinearLayout
+                android:id="@+id/panel_services"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ecosystem Service &amp; Contract Diagnostics"
+                    android:textColor="@color/primary_cyan"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="10dp">
+
+                    <Button
+                        android:id="@+id/btn_diag_device"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Device Info"
+                        android:backgroundTint="@color/surface_elevated"
+                        android:textColor="@color/primary_cyan" />
+
+                    <Button
+                        android:id="@+id/btn_diag_battery"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Battery"
+                        android:backgroundTint="@color/surface_elevated"
+                        android:textColor="@color/primary_cyan"
+                        android:layout_marginStart="6dp" />
+
+                    <Button
+                        android:id="@+id/btn_diag_network"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Network"
+                        android:backgroundTint="@color/surface_elevated"
+                        android:textColor="@color/primary_cyan"
+                        android:layout_marginStart="6dp" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_service_output"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="140dp"
+                    android:background="@color/surface_dark"
+                    android:padding="12dp"
+                    android:textColor="@color/text_high"
+                    android:fontFamily="monospace"
+                    android:textSize="12sp"
+                    android:text="Press an action above to query NativeServiceSDK built-in services..." />
+            </LinearLayout>
+
+            <!-- Panel 4: Test Center -->
+            <LinearLayout
+                android:id="@+id/panel_tests"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Integration Test Center (Live Test Suite)"
+                    android:textColor="@color/primary_cyan"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="12dp" />
+
+                <Button
+                    android:id="@+id/btn_run_all_tests"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Run All Integration Tests"
+                    android:textColor="@color/canvas_dark"
+                    android:backgroundTint="@color/primary_cyan"
+                    android:layout_marginBottom="10dp" />
+
+                <TextView
+                    android:id="@+id/tv_test_results"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="180dp"
+                    android:background="@color/surface_dark"
+                    android:padding="12dp"
+                    android:textColor="@color/text_high"
+                    android:fontFamily="monospace"
+                    android:textSize="12sp"
+                    android:text="Click 'Run All Integration Tests' to execute live verification..." />
+            </LinearLayout>
+
+            <!-- Panel 5: Console -->
+            <LinearLayout
+                android:id="@+id/panel_console"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="Runtime Telemetry Console"
+                        android:textColor="@color/primary_cyan"
+                        android:textSize="14sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btn_clear_console"
+                        style="?android:attr/borderlessButtonStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="36dp"
+                        android:text="Clear"
+                        android:textColor="@color/text_muted" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_console_logs"
+                    android:layout_width="match_parent"
+                    android:layout_height="260dp"
+                    android:background="@color/surface_dark"
+                    android:padding="12dp"
+                    android:textColor="@color/text_high"
+                    android:fontFamily="monospace"
+                    android:textSize="11sp"
+                    android:scrollbars="vertical"
+                    android:text="[System] Telemetry Console Initialized.\n" />
+            </LinearLayout>
+
+            <!-- Persistent Output / Inspection Dock -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Last Execution Output:"
+                android:textColor="@color/text_muted"
+                android:textSize="12sp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="6dp" />
+
+            <TextView
+                android:id="@+id/tv_last_output"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="80dp"
+                android:background="@color/surface_dark"
+                android:padding="12dp"
+                android:textColor="@color/primary_cyan"
+                android:fontFamily="monospace"
+                android:textSize="12sp"
+                android:text="Status: Standing by..." />
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

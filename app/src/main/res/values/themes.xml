@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.NativeWebBridgeSDK" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primary_cyan</item>
+        <item name="colorPrimaryVariant">#00B8D4</item>
+        <item name="colorOnPrimary">@color/canvas_dark</item>
+        <item name="android:windowBackground">@color/canvas_dark</item>
+        <item name="android:textColor">@color/text_high</item>
+    </style>
+</resources>
